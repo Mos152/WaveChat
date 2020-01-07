@@ -7,8 +7,17 @@
 </ion-header>
 
 <ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+
+  <ion-list>
+      <ion-item *ngFor = "let chat of chatRooms" (click)="openChat(chat)"> 
+        <ion-avatar slot="start">
+          <ion-img [src]="chat.img"></ion-img>    
+        </ion-avatar>  
+        <ion-label>
+          <h2><b>{{chat.name}}</b></h2>
+          <p>{{chat.description}}</p>
+        </ion-label>
+      </ion-item>
+  </ion-list>
+<!--ion-button (click)="onlogout()">desconectarse</!--ion-button-->
 </ion-content>

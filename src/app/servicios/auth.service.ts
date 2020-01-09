@@ -42,5 +42,9 @@ export class AuthService {
     
   }
 
+  getUserInfo(uid:string){
+    return this.db.collection('users').doc(uid).valueChanges()
+  }
+
 
 }

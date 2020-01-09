@@ -38,4 +38,11 @@ export class ChatsService {
       messages : firestore.FieldValue.arrayUnion(message),
     })
   }
+
+  createChatRoom( nameChat:string, description:string){
+   return this.db.collection('ChatsRooms').add({
+      name:nameChat,
+      description:description,
+    });
+  }
 }

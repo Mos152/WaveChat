@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-button slot="start" fill="clear" (click)="closeChat()">
+      <ion-icon style="color:#fff; font-size: 25px" name="arrow-round-back"></ion-icon>
+    </ion-button> 
+    <ion-title>Crear chat</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+<ion-item>
+  <ion-label position="stacked" >Nombre de la sala</ion-label>
+  <ion-input  [(ngModel)]="nameChat"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label position="stacked">descripcion</ion-label>
+  <ion-input  [(ngModel)]="description"></ion-input>
+</ion-item>
+<ion-button (click)="onCreate()" expand="block">entrar</ion-button>
+</ion-content>

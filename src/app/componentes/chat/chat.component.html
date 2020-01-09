@@ -12,7 +12,7 @@
   <div *ngIf="room">
     <ion-card *ngFor="let mensaje of room.messages">
      <ion-card-content>
-        {{mensaje.content}}
+        {{mensaje.content}} - {{mensaje.userName}}
       </ion-card-content>
     </ion-card>
   </div>

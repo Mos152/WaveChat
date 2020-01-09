@@ -4,6 +4,7 @@ import { ChatsService, chat } from '../servicios/chats.service';
 import { ModalController } from '@ionic/angular';
 import { ChatComponent } from '../componentes/chat/chat.component';
 import { ActionSheetController } from '@ionic/angular';
+import { CrearchatComponent } from '../componentes/crearchat/crearchat.component';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -17,7 +18,6 @@ export class HomePage implements OnInit {
               public chatservice: ChatsService,
               private modal: ModalController,
               public actionSheetController: ActionSheetController){}
-
   onlogout(){
     this.authservice.logout();
   }
@@ -35,6 +35,16 @@ export class HomePage implements OnInit {
       }
     }).then((modal) => modal.present())
   }
+
+  createRoom(sala){
+   this.modal.create({
+    component: CrearchatComponent,
+      componentProps: {
+        sala:sala  
+      }
+   }).then((modal) => modal.present())
+  }
+
   async presentActionSheet() {
     const actionSheet = await this.actionSheetController.create({
       header: 'opciones',
@@ -45,7 +55,6 @@ export class HomePage implements OnInit {
         handler: () => {
           this.onlogout()
         }
-        
       }]
     });
     await actionSheet.present();

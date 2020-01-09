@@ -11,10 +11,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { ChatComponent} from './componentes/chat/chat.component';
+import { CrearchatComponent} from './componentes/crearchat/crearchat.component';
 import { FormsModule } from '@angular/forms';
 @NgModule({
-  declarations: [AppComponent,ChatComponent],
-  entryComponents: [ChatComponent],
+  declarations: [AppComponent,ChatComponent,CrearchatComponent],
+  entryComponents: [ChatComponent, CrearchatComponent],
   imports: [FormsModule,BrowserModule, IonicModule.forRoot(), AppRoutingModule,
     AngularFireModule.initializeApp(FirebaseConfig),
   AngularFireAuthModule,

@@ -1,20 +1,20 @@
 <ion-header>
-  <ion-toolbar color="tertiary">
+  <ion-toolbar color="primary">
     <ion-button slot="end" fill="clear" (click)="presentActionSheet()">
       <ion-icon style="color:#fff" name="menu"></ion-icon>
     </ion-button>
-    <ion-title>
+    <ion-title text-center>
       Ionic Blank
-    </ion-title>
+    </ion-title >
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content >
 
   <ion-list>
       <ion-item *ngFor = "let chat of chatRooms" (click)="openChat(chat)"> 
         <ion-avatar slot="start">
-          <ion-img [src]="chat.img"></ion-img>    
+          <ion-img [src]="chat.url_img"></ion-img>    
         </ion-avatar>  
         <ion-label>
           <h2><b>{{chat.name}}</b></h2>

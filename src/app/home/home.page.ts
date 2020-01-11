@@ -25,6 +25,7 @@ export class HomePage implements OnInit {
   ngOnInit(){
     this.chatservice.getChatRooms().subscribe( chats => {
       this.chatRooms = chats;  
+      console.log(this.chatRooms)
     })
   }
   openChat(chat){

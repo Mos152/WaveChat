@@ -13,13 +13,18 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { ChatComponent} from './componentes/chat/chat.component';
 import { CrearchatComponent} from './componentes/crearchat/crearchat.component';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [AppComponent,ChatComponent,CrearchatComponent],
   entryComponents: [ChatComponent, CrearchatComponent],
-  imports: [FormsModule,BrowserModule, IonicModule.forRoot(), AppRoutingModule,
+  imports: [FormsModule,
+    BrowserModule, 
+    IonicModule.forRoot(), 
+    AppRoutingModule,
     AngularFireModule.initializeApp(FirebaseConfig),
-  AngularFireAuthModule,
-  AngularFirestoreModule],
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    BrowserAnimationsModule],
   providers: [
     StatusBar,
     SplashScreen,

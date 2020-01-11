@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
 import { message } from '../models/message';
 import { firestore } from 'firebase' ;
+import * as firebase from 'firebase';
 //import { message } from '../models/message';
 //import { room } from '../models/room';
 export interface chat{
@@ -12,10 +13,12 @@ export interface chat{
   img : string; 
 }
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class ChatsService {
+
 
   constructor(private db : AngularFirestore) { }
 
@@ -27,6 +30,7 @@ export class ChatsService {
         return data;
       })  
     }))
+    
   }
 
   getChatRoom( chat_id : string){
@@ -39,10 +43,13 @@ export class ChatsService {
     })
   }
 
-  createChatRoom( nameChat:string, description:string){
-   return this.db.collection('ChatsRooms').add({
+  createChatRoom( nameChat:string, description:string,img:string,user:string){
+   
+    return this.db.collection('ChatsRooms').add({
       name:nameChat,
       description:description,
+      url_img:img,
+      userID:user
     });
   }
 }

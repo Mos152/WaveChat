@@ -7,15 +7,20 @@ import { PrivatechatComponent} from '../componentes/privatechat/privatechat.comp
 import { ActionSheetController } from '@ionic/angular';
 import { CrearchatComponent } from '../componentes/crearchat/crearchat.component';
 import { CreatchatprivadosComponent } from '../componentes/creatchatprivados/creatchatprivados.component';
+import * as firebase from "firebase/app";
+import { transformAll } from '@angular/compiler/src/render3/r3_ast';
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-
+  public filtrado :boolean = false;
+  user : firebase.User;
   public chatRooms: any = [];
   public chatPrivateRooms : any = [];
+  userActivo: string;
   constructor(public authservice : AuthService, 
               public chatservice: ChatsService,
               private modal: ModalController,
@@ -25,16 +30,21 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit(){
-
-    this.chatservice.getChatRooms().subscribe( chats => {
-      this.chatRooms = chats;  
-      console.log(this.chatRooms)
-    })
-    this.chatservice.getPrivateChatRooms().subscribe( chats => {
-      this.chatPrivateRooms = chats;
-      console.log(this.chatPrivateRooms)
-    })
+    this.cargarChats()
+    
   }
+
+cargarChats(){
+  this.chatservice.getChatRooms().subscribe( chats => {
+    this.chatRooms = chats;  
+    console.log("chat publicos",this.chatRooms)
+  })
+  this.chatservice.getPrivateChatRooms().subscribe( chats => {
+    this.chatPrivateRooms = chats;
+    console.log("chats privados",this.chatPrivateRooms)
+  })
+}
+
   openChat(chat){
     this.modal.create({
       component: ChatComponent,
@@ -45,6 +55,7 @@ export class HomePage implements OnInit {
   }
 
   openPrivateChat(chat){
+    console.log(chat)
     this.modal.create({
       component: PrivatechatComponent,
       componentProps:{
@@ -85,5 +96,23 @@ export class HomePage implements OnInit {
       }]
     });
     await actionSheet.present();
+  }
+  mis(){
+    if (this.filtrado == false) {
+      this.filtrado = true
+      this.filtrarLosMios()
+      console.log("filtrado")
+    }else{
+      this.filtrado = false
+      this.cargarChats()
+      console.log("noFiltrado")
+    }
+
+  }
+
+  filtrarLosMios(){
+    let chatPublicados 
+    chatPublicados = this.chatRooms
+   
   }
 }

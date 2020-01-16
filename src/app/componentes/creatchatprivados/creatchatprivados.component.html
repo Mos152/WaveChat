@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="tertiary">
-    <ion-button slot="start" fill="clear" (click)="closeChat()">
+    <ion-button slot="start" fill="clear" (click)="closeCreate()">
       <ion-icon style="color:#fff; font-size: 25px" name="arrow-round-back"></ion-icon>
     </ion-button> 
     <ion-title>Crear sala privada</ion-title>
@@ -8,56 +8,34 @@
 </ion-header>
 <ion-content>
 
-<ion-item>
-  <div style="width: 100%; text-align: center; padding-bottom: 1ch; padding-top: 3ch;">
-    <img *ngIf="url_img" style="border-radius:50%" src="{{url_img}}">
-  </div>
-</ion-item>  
-
-
-<ion-item>
-  <ion-label position="stacked" >Nombre de la sala</ion-label>
-  <ion-input  [(ngModel)]="nameChat"></ion-input>
-</ion-item>
-
-<ion-item>
-  <ion-label position="stacked">descripcion</ion-label>
-  <ion-input [(ngModel)]="description"></ion-input>
-</ion-item>
-
-<ion-item>
-  <ion-label position="stacked">clave de acceso</ion-label>
-  <ion-input [(ngModel)]="password" type="password"></ion-input>
-</ion-item>
-<ion-item>
-  <ion-label position="stacked">Direccion URL de la imagen:</ion-label>
-  <ion-input [(ngModel)]="url_img"></ion-input>
-</ion-item>
-<ion-button expand="block" (click)="onCreate()">entrar</ion-button>
-
-  <!--form [formGr oup]="FormularioChat" (ngSubmit)="onCreate()">
-  
   <ion-item>
-    <label>Nombre de la sala</label>
-    <ion-input  formControlName="nameChat" type="text"></ion-input>
-  </ion-item>
+    <div style="width: 100%; text-align: center; padding-bottom: 1ch; padding-top: 3ch;">
+      <img *ngIf="url_img" style="border-radius:50%" src="{{url_img}}">
+    </div>
+  </ion-item>  
 
-  <ion-item>
-    <label>descripcion</label>
-    <ion-input formControlName="description"type="text"></ion-input>
-  </ion-item>
+  <form (ngSubmit)="onCreate()" [formGroup]="FormularioChat" >
+    
+    <ion-list>  
+      <ion-item>
+        <ion-label position="floating">Nombre de la sala</ion-label>
+        <ion-input formControlName="nameChat" inputmode="text" ></ion-input>
+      </ion-item>
 
-  <ion-item>  
-    <label>clave de acceso</label>
-    <ion-input formControlName="password"type="password"></ion-input>
-  </ion-item>
-  
-  <ion-item>
-    <label>Direccion URL de la imagen:</label>
-    <ion-input formControlName="url_img" type="text"></ion-input>
-  </ion-item>
-  
-  <button type="submit">entrar</button>
-</form-->
+      <ion-item>
+        <ion-label position="floating">descripcion</ion-label>
+        <ion-input formControlName="description" inputmode="text"></ion-input>
+      </ion-item>
 
+      <ion-item>  
+        <ion-label position="floating">clave de acceso</ion-label>
+        <ion-input formControlName="password"  inputmode="password"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Direccion URL de la imagen:</ion-label>
+        <ion-input [(ngModel)]="url_img" inputmode="text" [ngModelOptions]="{standalone: true}"></ion-input>
+      </ion-item>
+      <ion-button [disabled]="!FormularioChat.valid" type="submit">entrar</ion-button>    
+    </ion-list>  
+</form> 
 </ion-content>

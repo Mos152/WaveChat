@@ -1,1 +1,17 @@
-<p>esto apareceria si el usuario ingresa la contraseña</p>
+<ion-content >
+    <div *ngIf="!permition">
+    <ion-list >
+        <ion-label>debe ingresar la contraseña para poder entrar a esta sala</ion-label>
+        <ion-input [(ngModel)]="ngclave">contras</ion-input>   
+    </ion-list>
+    <ion-item>
+        <ion-button (click)="Entrar()">Entrar</ion-button>
+    </ion-item>
+</div>
+</ion-content>  
+<ion-content >
+<div *ngIf="permition">
+    hola
+</div>
+
+</ion-content>

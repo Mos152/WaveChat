@@ -3,6 +3,12 @@
     <ion-button slot="end" fill="clear" (click)="presentActionSheet()">
       <ion-icon style="color:#fff" name="menu"></ion-icon>
     </ion-button>
+    <ion-label></ion-label>
+
+    <ion-checkbox (click)="mis()"></ion-checkbox>
+    <ion-label>Filtrar mis salas</ion-label>
+
+
     <ion-title text-center>
       Ionic Blank
     </ion-title >
@@ -11,7 +17,7 @@
 
 <ion-content >
 
-  <ion-list>
+  <ion-list *ngIf = "!filtrado">
       <ion-item *ngFor = "let chat of chatRooms" (click)="openChat(chat)"> 
         <ion-avatar slot="start">
           <ion-img [src]="chat.url_img"></ion-img>    
@@ -22,7 +28,7 @@
         </ion-label>
       </ion-item>
   </ion-list>
-  <ion-list>
+  <ion-list *ngIf = "!filtrado" >
     <ion-item *ngFor = "let chat of chatPrivateRooms" (click)="openPrivateChat(chat)"> 
       <ion-avatar slot="start">
         <ion-img [src]="chat.url_img"></ion-img>    
@@ -35,6 +41,16 @@
 </ion-list>
 <!--ion-button (click)="onlogout()">desconectarse</!--ion-button-->
 
+
+<ion-list *ngIf = "filtrado">
+  chat pubblicas filtradas
+</ion-list>
+
+<ion-list *ngIf = "filtrado">
+ chat privadas filtradass
+  </ion-list>
+  
+  
 
 <ion-fab vertical="bottom" horizontal="end" slot="fixed">
   <ion-fab-button (click)="createRoom()">

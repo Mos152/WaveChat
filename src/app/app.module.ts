@@ -16,14 +16,16 @@ import { CrearchatComponent} from './componentes/crearchat/crearchat.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CreatchatprivadosComponent } from './componentes/creatchatprivados/creatchatprivados.component';
+import { FiltroPipe } from './pipe/filtro.pipe';
 @NgModule({
-  declarations: [AppComponent,ChatComponent,PrivatechatComponent,CrearchatComponent,CreatchatprivadosComponent],
+  declarations: [AppComponent,ChatComponent,PrivatechatComponent,CrearchatComponent,CreatchatprivadosComponent, FiltroPipe],
   entryComponents: [ChatComponent,PrivatechatComponent, CrearchatComponent,CreatchatprivadosComponent],
   exports:[
     FormsModule,
     ReactiveFormsModule  
   ],
   imports: [FormsModule,
+    ReactiveFormsModule,
     BrowserModule, 
     IonicModule.forRoot(), 
     AppRoutingModule,

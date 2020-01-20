@@ -68,7 +68,7 @@ export class ChatsService {
 
   sendPrivateMsgToFirebase(message : message,chat_id:string){
     this.db.collection('PrivateChatRooms').doc(chat_id).update({
-      message : firestore.FieldValue.arrayUnion(message),
+      messages : firestore.FieldValue.arrayUnion(message),
     })
   }
 

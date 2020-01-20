@@ -20,6 +20,7 @@ export class PrivatechatComponent implements OnInit {
   //public message: message;
   public ngclave:string;
   private permition: boolean = false; 
+  private showdiv: boolean = true;
   public messages = [];
   public room: any;
   public msg:string;
@@ -34,7 +35,7 @@ export class PrivatechatComponent implements OnInit {
     private db : AngularFirestore) { }
 
   ngOnInit() {
-        this.user = firebase.auth().currentUser;
+    this.user = firebase.auth().currentUser;
     this.userUID = this.user.uid;
     this.userName = this.authService.getUserInfo(this.userUID).subscribe(uid =>{
       this.userInfo = uid;
@@ -44,7 +45,8 @@ export class PrivatechatComponent implements OnInit {
       this.room = room;
       console.log(this.room)
     })  
-    this.chat = this.navparams.get('chat')}
+    this.chat = this.navparams.get('chat')
+  }
   closeChat(){
     this.modal.dismiss();
   }
@@ -52,11 +54,25 @@ export class PrivatechatComponent implements OnInit {
   Entrar(){
     if (this.room.password == this.ngclave) {
       this.permition = true
+      this.showdiv = false
     }else{
       throw console.error("contraseña incorrecta");
       
     }
   }
-
+  sendMessage(){
+    //this.messages.push(this.message);
+    
+    const mensaje : message = {
+    userUID : this.userUID,
+    userName : this.userName,
+    content : this.msg,
+    type :'text', 
+    date: new Date()
+    }
+    
+    this.chatService.sendPrivateMsgToFirebase(mensaje, this.chat.id);
+    this.msg = "";
+  }
 
 }

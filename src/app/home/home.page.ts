@@ -9,7 +9,8 @@ import { CrearchatComponent } from '../componentes/crearchat/crearchat.component
 import { CreatchatprivadosComponent } from '../componentes/creatchatprivados/creatchatprivados.component';
 import * as firebase from "firebase/app";
 import { transformAll } from '@angular/compiler/src/render3/r3_ast';
-
+import { AngularFirestore } from '@angular/fire/firestore';
+import { userI } from '../models/userI';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -17,26 +18,39 @@ import { transformAll } from '@angular/compiler/src/render3/r3_ast';
 })
 export class HomePage implements OnInit {
   public filtrado :boolean = false;
+ 
   user : firebase.User;
+  userinfo:firebase.UserInfo;
+  //variables para filtrar las salas del usuario
+  public userUID;
+  public mischatprivados:any= [];
+  public mischatpublicos:any= [];
+  ////////////////////////////
   public chatRooms: any = [];
   public chatPrivateRooms : any = [];
   userActivo: string;
   constructor(public authservice : AuthService, 
               public chatservice: ChatsService,
               private modal: ModalController,
-              public actionSheetController: ActionSheetController){}
+              public actionSheetController: ActionSheetController,
+              private db : AngularFirestore){}
   onlogout(){
     this.authservice.logout();
   }
 
   ngOnInit(){
     this.cargarChats()
-    
+    this.CargarDatosPerfil()
+    //obtengo uid del usuario logueado para realizar un filtrado
+    this.user=firebase.auth().currentUser;
+    this.userUID = this.user.uid;
+
   }
 
 cargarChats(){
   this.chatservice.getChatRooms().subscribe( chats => {
     this.chatRooms = chats;  
+   // this.mischatprivados = this.chatRooms.userID
     console.log("chat publicos",this.chatRooms)
   })
   this.chatservice.getPrivateChatRooms().subscribe( chats => {
@@ -102,6 +116,7 @@ cargarChats(){
       this.filtrado = true
       this.filtrarLosMios()
       console.log("filtrado")
+      
     }else{
       this.filtrado = false
       this.cargarChats()
@@ -113,6 +128,13 @@ cargarChats(){
   filtrarLosMios(){
     let chatPublicados 
     chatPublicados = this.chatRooms
-   
   }
+
+  CargarDatosPerfil(){
+    console.log("mis datos",this.userinfo);
+
+  }
+
 }
+
+

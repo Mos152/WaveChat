@@ -11,6 +11,10 @@ const routes: Routes = [
     path: 'mis-salas',
     loadChildren: () => import('./mis-salas/mis-salas.module').then( m => m.MisSalasPageModule)
   },
+  {
+    path: 'profile',
+    loadChildren: () => import('./componentes/admin/profile/profile.module').then( m => m.ProfilePageModule)
+  },
   
 ];
 

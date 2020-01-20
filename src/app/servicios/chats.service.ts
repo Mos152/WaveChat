@@ -6,11 +6,13 @@ import { firestore } from 'firebase' ;
 import * as firebase from 'firebase';
 //import { message } from '../models/message';
 //import { room } from '../models/room';
+
 export interface chat{
   description : string; 
   name : string ;
   id : string;
   img : string; 
+  user:string;
 }
 export interface privatechat{
   description : string;
@@ -18,8 +20,8 @@ export interface privatechat{
   id : string;
   img : string;
   password : string;
+  user:string
 }
-
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +35,7 @@ export class ChatsService {
     return this.db.collection('ChatsRooms').snapshotChanges().pipe(map(rooms =>{
       return rooms.map(a =>{
         const data = a.payload.doc.data() as chat;
-        data.id = a.payload.doc.id;        
+        data.id = a.payload.doc.id;
         return data;
       })  
     }))
@@ -48,12 +50,15 @@ export class ChatsService {
       })
     }))
   }
-  getprivateChatRoom(privatechat_id :string){
-    return this.db.collection('PrivateChatRooms').doc(privatechat_id).valueChanges()  
+  getprivateChatRoom(chat_id :string){
+    return this.db.collection('PrivateChatRooms').doc(chat_id).valueChanges()  
   }
+
   getChatRoom( chat_id : string  ){
     return this.db.collection('ChatsRooms').doc(chat_id).valueChanges()
   }
+
+ 
 
   sendMsgToFirebase(message : message, chat_id : string,){
     this.db.collection('ChatsRooms').doc(chat_id).update({
@@ -61,8 +66,8 @@ export class ChatsService {
     })
   }
 
-  sendPrivateMsgToFirebase(message : message,privatechat_id){
-    this.db.collection('PrivateChatRooms').doc(privatechat_id).update({
+  sendPrivateMsgToFirebase(message : message,chat_id:string){
+    this.db.collection('PrivateChatRooms').doc(chat_id).update({
       message : firestore.FieldValue.arrayUnion(message),
     })
   }

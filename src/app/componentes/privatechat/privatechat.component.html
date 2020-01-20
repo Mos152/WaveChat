@@ -8,7 +8,7 @@
 </ion-header>
 
 
-<div *ngIf="!permition"  >  
+<div *ngIf="!permition">  
     <ion-list>
         <ion-label>debe ingresar la contraseña para poder entrar a esta sala</ion-label>
         <ion-input [(ngModel)]="ngclave">contras</ion-input>   
@@ -21,7 +21,7 @@
 
     <ion-content style="color: black;">
 
-    <div *ngIf="room">
+    <div *ngIf="permition">
         <ion-card *ngFor="let mensaje of room.messages" style="color: black;">
             <ion-card-content>
             {{mensaje.content}} - {{mensaje.userName}}

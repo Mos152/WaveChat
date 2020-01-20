@@ -8,7 +8,7 @@
 </ion-header>
 
 
-<!--div *ngIf="!permition"  >  
+<div *ngIf="!permition"  >  
     <ion-list>
         <ion-label>debe ingresar la contraseña para poder entrar a esta sala</ion-label>
         <ion-input [(ngModel)]="ngclave">contras</ion-input>   
@@ -16,7 +16,7 @@
     <ion-item>
         <ion-button (click)="Entrar()">Entrar</ion-button>
     </ion-item>
-</div-->
+</div>
 
 
     <ion-content style="color: black;">
@@ -33,8 +33,7 @@
 
     <ion-footer>
     <ion-item>
-        <!--ion-textarea [disabled]=showdiv  [(ngModel)]="msg"></!--ion-textarea -->
-        <ion-textarea [(ngModel)]="msg"></ion-textarea> 
+        <ion-textarea [disabled]=showdiv  [(ngModel)]="msg"></ion-textarea> 
         <ion-button color="success" (click)="sendMessage()"> 
         <ion-icon name="send"></ion-icon>
         </ion-button>

@@ -64,6 +64,7 @@ export class CreatchatprivadosComponent implements OnInit {
     var pass=this.f.password.value;
     var topic=this.f.description.value;
     this.ChatService.createPrivateChatRoom(name, topic,this.url_img,this.user,pass).then((res)=> {
+      console.log(this.user);
     })  
     this.closeCreate();
     

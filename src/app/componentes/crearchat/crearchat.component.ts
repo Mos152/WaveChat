@@ -32,7 +32,6 @@ export class CrearchatComponent implements OnInit {
       this.user = res.uid
       console.log(this.user)
      });
-
   }
 
   onCreate(){

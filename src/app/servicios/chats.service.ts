@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
 import { message } from '../models/message';
@@ -26,11 +26,15 @@ export interface privatechat{
 @Injectable({
   providedIn: 'root'
 })
-export class ChatsService {
-
-
+export class ChatsService implements OnInit{
+  private user: any;
   constructor(private db : AngularFirestore) { }
-
+  ngOnInit() {
+    firebase.auth().onAuthStateChanged((res) =>{
+         this.user = res.uid
+         console.log(this.user)  
+       });
+     }
   getChatRooms(){
     return this.db.collection('ChatsRooms').snapshotChanges().pipe(map(rooms =>{
       return rooms.map(a =>{
@@ -90,4 +94,22 @@ export class ChatsService {
       userID:user    
     });
   }
+  filterPrivateRoomsByUID(user){
+    return this.db.collection("PrivateChatRooms", ref => ref.where('userID', '==', user)).snapshotChanges().pipe(map(rooms =>{
+      return rooms.map(a =>{
+        const data = a.payload.doc.data() as privatechat;
+        data.id = a.payload.doc.id;
+        return data;
+      })
+    }));
+}
+filterPublicRoomsByUID(user){
+  return this.db.collection("ChatsRooms", ref => ref.where('userID', '==', user)).snapshotChanges().pipe(map(rooms =>{
+    return rooms.map(a =>{
+      const data = a.payload.doc.data() as chat;
+      data.id = a.payload.doc.id;
+      return data;
+    })
+  }));
+}
 }

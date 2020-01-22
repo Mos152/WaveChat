@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavParams, ModalController } from '@ionic/angular';
+import { NavController,NavParams, ModalController } from '@ionic/angular';
 import { message } from '../../models/message';
 import { ChatsService } from '../../servicios/chats.service';
 import { AuthService } from '../../servicios/auth.service';
@@ -7,7 +7,9 @@ import { room} from '../../models/room';
 import { AngularFireAuth } from "@angular/fire/auth";
 import * as firebase from "firebase/app";
 import 'firebase/auth';
+import { ActionSheetController } from '@ionic/angular';
 import 'firebase/firestore';
+import { InforoomComponent } from '../inforoom/inforoom.component';
 import { AngularFirestore } from '@angular/fire/firestore';
 @Component({
   selector: 'app-chat',
@@ -29,6 +31,7 @@ export class ChatComponent implements OnInit {
     private modal:ModalController,
     private chatService: ChatsService,
     private authService: AuthService,
+    public actionSheetController: ActionSheetController,
     fireAuth: AngularFireAuth,
     private db : AngularFirestore ) { 
     }
@@ -48,6 +51,15 @@ export class ChatComponent implements OnInit {
   closeChat(){
     this.modal.dismiss();
   }
+
+
+  // informationRoom(){
+  //   let modaltest = this.modal.create({
+  //     component: InforoomComponent,
+  //   });
+  //   this.nav.
+  // }
+
   sendMessage(){
     //this.messages.push(this.message);
     
@@ -62,4 +74,4 @@ export class ChatComponent implements OnInit {
     this.chatService.sendMsgToFirebase(mensaje, this.chat.id);
     this.msg = "";
   }
-}
+  }

@@ -1,5 +1,8 @@
 <ion-header>
-  <ion-toolbar color="tertiary">
+  <ion-toolbar color="primary">
+    <ion-button slot="end" fill="clear" (click)="informationRoom()">
+      <ion-icon style="color:#fff" name="information"></ion-icon>
+    </ion-button>
     <ion-button slot="start" fill="clear" (click)="closeChat()">
       <ion-icon style="color:#fff; font-size: 25px" name="arrow-round-back"></ion-icon>
     </ion-button> 
@@ -7,10 +10,11 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content >
+<ion-content padding color="primary">
 
   <div *ngIf="room">
-    <ion-card *ngFor="let mensaje of room.messages">
+    <ion-card *ngFor="let mensaje of room.messages" 
+    color="secondary">
      <ion-card-content>
         {{mensaje.content}} - {{mensaje.userName}}
       </ion-card-content>

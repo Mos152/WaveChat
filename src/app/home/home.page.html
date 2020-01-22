@@ -41,28 +41,42 @@
 
 
 <ion-list *ngIf="filtrado">
-  chat publicas filtradas
-  <ion-item *ngFor = "let chat of myPrivateRooms" (click)="openPrivateChat(chat)"> 
+  salas privadas filtradas
+  <ion-item *ngFor = "let chat of myPrivateRooms" > 
     <ion-avatar slot="start">
       <ion-img [src]="chat.url_img"></ion-img>    
-    </ion-avatar>  
+    </ion-avatar>
+    <ion-grid (click)="openPrivateChat(chat)">
+      <ion-row>
     <ion-label>
       <h2><b>{{chat.name}}</b></h2>
       <p>{{chat.description}}</p>
     </ion-label>
+  </ion-row>
+  </ion-grid>
+    <ion-button slot="end" fill="clear" (click)="editChat(chat)">
+      <ion-icon style="color:red" name="menu"></ion-icon>
+    </ion-button>
   </ion-item>
 </ion-list>
 
 <ion-list *ngIf="filtrado">
- chat privadas filtradas
- <ion-item *ngFor = "let chat of myPublicRooms" (click)="openChat(chat)"> 
+ salas públicas filtradas
+ <ion-item *ngFor = "let chat of myPublicRooms" >   
   <ion-avatar slot="start">
     <ion-img [src]="chat.url_img"></ion-img>    
-  </ion-avatar>  
+  </ion-avatar>
+  <ion-grid (click)="openChat(chat)">
+    <ion-row>
   <ion-label>
     <h2><b>{{chat.name}}</b></h2>
     <p>{{chat.description}}</p>
   </ion-label>
+</ion-row>
+</ion-grid>
+  <ion-button position="floating" slot="end" style="margin-left: 2px;" fill="clear" (click)="editPublicChat(chat)">
+    <ion-icon style="color:red" name="menu"></ion-icon>
+  </ion-button>
 </ion-item>
 </ion-list>
   

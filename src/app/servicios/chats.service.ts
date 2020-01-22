@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 import { message } from '../models/message';
 import { firestore } from 'firebase' ;
 import * as firebase from 'firebase';
+//import { ConsoleReporter } from 'jasmine';
 //import { message } from '../models/message';
 //import { room } from '../models/room';
 
@@ -111,5 +112,35 @@ filterPublicRoomsByUID(user){
       return data;
     })
   }));
+}
+updateRoomPrivate(id:string, name:string,description:string,img:string,password:string){
+  this.db.collection('PrivateChatRooms').doc(id).update({
+    name:name,
+    description:description,
+    url_img:img,
+    password:password,    
+  })
+
+}
+updateRoomPublic(id:string,name:string,description:string,img:string){
+  this.db.collection('ChatsRooms').doc(id).update({
+    name:name,
+    description:description,
+    url_img:img,
+  })
+}
+deleteRoomPublic(id:string){
+  this.db.collection('ChatsRooms').doc(id).delete().then(function(){
+    console.log("se elimino la sala publica");
+  }).catch(function(error){
+    console.log("error");
+  });
+}
+deleteRoomPrivate(id:string){
+  this.db.collection('PrivateChatRooms').doc(id).delete().then(function(){
+    console.log("se elimino la sala privada");
+  }).catch(function(error){
+    console.log("error");
+  });
 }
 }

@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-button slot="end" fill="clear" (click)="informationRoom()">
+      <ion-icon style="color:#fff" name="information"></ion-icon>
+    </ion-button>
+    <ion-button slot="start" fill="clear" (click)="closeChat()">
+      <ion-icon style="color:#fff; font-size: 25px" name="arrow-round-back"></ion-icon>
+    </ion-button> 
+    <ion-title>Editar {{chat.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-item>
+    <ion-label position="floating">Nombre</ion-label>
+    <ion-input type="text" [(ngModel)]="name" name="name"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Descripción</ion-label>
+    <ion-input type="text" [(ngModel)]="description" name="description"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">URL imagen</ion-label>
+    <ion-input type="text" [(ngModel)]="img" name="img"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Clave</ion-label>
+    <ion-input type="text" [(ngModel)]="password" name="password"></ion-input>
+  </ion-item>
+  <ion-button (click)="update()">actualizar</ion-button>
+  <ion-button (click)="delete()">Eliminar sala</ion-button>
+</ion-content>

@@ -8,6 +8,7 @@ import * as firebase from "firebase/app";
 import 'firebase/auth';
 import 'firebase/firestore';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { ActionSheetController } from '@ionic/angular';
 
 @Component({
   selector: 'app-privatechat',
@@ -28,6 +29,7 @@ export class PrivatechatComponent implements OnInit {
   public userUID;
   public userName;
   constructor(private navparams: NavParams,
+    public actionSheetController: ActionSheetController,
     private modal:ModalController,
     private chatService: ChatsService,
     private authService: AuthService,
@@ -59,6 +61,44 @@ export class PrivatechatComponent implements OnInit {
       throw console.error("contraseña incorrecta");
       
     }
+  }
+  async informationRoom(){
+    const actionSheet = await this.actionSheetController.create({
+      header: 'opciones',
+      buttons: [
+        {
+        text: 'nombre',  
+        role: 'destructive',
+        icon: 'log-out',
+        handler: () => {
+        }
+        },
+        {
+        text: 'imagen',  
+        role: 'destructive',
+        icon: 'log-out',
+        handler: () => {
+        }
+        },
+        {
+        text: 'descripcion',  
+        role: 'destructive',
+        icon: 'log-out',
+        handler: () => {
+        }
+        },
+        {
+        text: 'contraseña',  
+        role: 'destructive',
+        icon: 'log-out',
+        handler: () => {
+        }
+        },
+      
+    ]
+    });
+    await actionSheet.present();
+
   }
   sendMessage(){
     //this.messages.push(this.message);

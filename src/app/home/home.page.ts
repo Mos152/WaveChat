@@ -8,9 +8,11 @@ import { ActionSheetController } from '@ionic/angular';
 import { CrearchatComponent } from '../componentes/crearchat/crearchat.component';
 import { CreatchatprivadosComponent } from '../componentes/creatchatprivados/creatchatprivados.component';
 import * as firebase from 'firebase';
+import { InforoomPublicComponent } from '../componentes/inforoom-public/inforoom-public.component';
 import { transformAll } from '@angular/compiler/src/render3/r3_ast';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { userI } from '../models/userI';
+import { InforoomComponent } from '../componentes/inforoom/inforoom.component';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -74,7 +76,6 @@ cargarChats(){
         chat:chat
       }   
     }).then((modal) => modal.present())
-    
   }
 
   createRoom(sala){
@@ -109,6 +110,7 @@ cargarChats(){
     });
     await actionSheet.present();
   }
+0
   mis(){
     if (this.filtrado == false) {
       this.filtrado = true
@@ -136,6 +138,23 @@ filterMyPublicRooms(){
 }
   CargarDatosPerfil(){
     console.log("mis datos",this.user);
+
+  }
+  editChat(chat){
+    this.modal.create({
+      component: InforoomComponent,
+      componentProps:{
+        chat:chat  
+      }  
+    }).then((modal) => modal.present())
+  }
+  editPublicChat(chat){
+    this.modal.create({
+      component: InforoomPublicComponent,
+      componentProps:{
+        chat:chat  
+      }
+    }).then((modal) => modal.present())
 
   }
 }

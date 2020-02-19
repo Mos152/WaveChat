@@ -41,7 +41,7 @@ export class HomePage implements OnInit {
                 // this.userUID = this.user.uid;
                 firebase.auth().onAuthStateChanged((res) => {
                   this.user = res.uid;
-                  console.log(this.user);
+                  //console.log(this.user);
                  });
               }
   onlogout(){
@@ -51,11 +51,11 @@ cargarChats(){
   this.chatservice.getChatRooms().subscribe( chats => {
     this.chatRooms = chats;  
    // this.mischatprivados = this.chatRooms.userID
-    console.log("chat publicos",this.chatRooms)
+    //console.log("chat publicos",this.chatRooms)
   })
   this.chatservice.getPrivateChatRooms().subscribe( chats => {
     this.chatPrivateRooms = chats;
-    console.log("chats privados",this.chatPrivateRooms)
+    //console.log("chats privados",this.chatPrivateRooms)
   })
 }
 
@@ -78,21 +78,15 @@ cargarChats(){
     }).then((modal) => modal.present())
   }
 
-  createRoom(sala){
+  createRoom(){
    this.modal.create({
-    component: CrearchatComponent,
-      componentProps: {
-        sala:sala  
-      }
+    component: CrearchatComponent
    }).then((modal) => modal.present())
   }
   
-  createPrivateRoom(salaprivada){
+  createPrivateRoom(){
     this.modal.create({
-      component:  CreatchatprivadosComponent,
-       componentProps:{
-          salaprivada:salaprivada  
-        }  
+      component:  CreatchatprivadosComponent
     }).then((modal) => modal.present())
   }
 
@@ -106,11 +100,34 @@ cargarChats(){
         handler: () => {
           this.onlogout()
         }
-      }]
+      },{
+        text: 'Crear Sala',
+        icon:'contacts',
+        handler: ()=>{
+          this.createRoom();
+        }
+      },
+      {
+
+        text:'Crear Sala Privada',
+        icon: 'lock',
+        handler: ()=>{
+          this.createPrivateRoom();
+        }
+      },
+      {
+        text: 'Mis Salas',
+        icon:'options',
+        handler: ()=>{
+          this.mis();
+        }
+      },
+
+      ]
     });
     await actionSheet.present();
   }
-0
+
   mis(){
     if (this.filtrado == false) {
       this.filtrado = true
@@ -137,7 +154,7 @@ filterMyPublicRooms(){
 });
 }
   CargarDatosPerfil(){
-    console.log("mis datos",this.user);
+    //console.log("mis datos",this.user);
 
   }
   editChat(chat){

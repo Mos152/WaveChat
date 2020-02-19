@@ -1,8 +1,8 @@
 <ion-header>
-  <ion-toolbar color="tertiary">
-    <ion-button slot="end" fill="clear" (click)="informationRoom()">
+  <ion-toolbar color="primary">
+    <!--ion-button slot="end" fill="clear" (click)="informationRoom()">
         <ion-icon style="color:#fff" name="information"></ion-icon>
-      </ion-button> 
+      </ion-button--> 
     <ion-button slot="start" fill="clear" (click)="closeChat()">
       <ion-icon style="color:#fff; font-size: 25px" name="arrow-round-back"></ion-icon>
     </ion-button> 
@@ -11,23 +11,28 @@
 </ion-header>
 
 
-<div *ngIf="!permition">  
-    <ion-list>
-        <ion-label>debe ingresar la contraseña para poder entrar a esta sala</ion-label>
-        <ion-input [(ngModel)]="ngclave">contras</ion-input>   
-    </ion-list>
-    <ion-item>
-        <ion-button (click)="Entrar()">Entrar</ion-button>
-    </ion-item>
+<div *ngIf="!permition" class="privatechat" color="primary">  
+   <ion-card> 
+     <ion-list>
+      <div text-center >
+        <ion-label position="floating" >debe ingresar la clave de seguridad para poder entrar a esta sala</ion-label>
+      </div>
+        <ion-input [(ngModel)]="ngclave" type="password">Clave:</ion-input>
+      </ion-list>
+      <ion-item>
+         <ion-button (click)="Entrar()">Entrar</ion-button>
+      </ion-item>
+    </ion-card>
 </div>
 
 
-    <ion-content style="color: black;">
+    <ion-content padding  color="primary">
 
     <div *ngIf="permition">
-        <ion-card *ngFor="let mensaje of room.messages" style="color: black;">
+        <ion-card *ngFor="let mensaje of room.messages" color="secondary">
             <ion-card-content>
-            {{mensaje.content}} - {{mensaje.userName}}
+              <b>{{mensaje .userName}} :</b>
+              {{mensaje.content}} 
             </ion-card-content>
         </ion-card>
     </div>

@@ -6,7 +6,7 @@ import {MatInputModule} from '@angular/material/input';
 import { IonicModule } from '@ionic/angular';
 
 import { LoginPageRoutingModule } from './login-routing.module';
-
+import { MbscModule } from '@mobiscroll/angular';
 import { LoginPage } from './login.page';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -14,6 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     ReactiveFormsModule,
     CommonModule,
+    MbscModule,
     FormsModule,
     IonicModule,
     LoginPageRoutingModule,

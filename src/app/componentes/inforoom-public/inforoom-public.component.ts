@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, NavParams } from '@ionic/angular';
 import { ChatsService } from '../../servicios/chats.service';
+import { AlertController} from '@ionic/angular';
 @Component({
   selector: 'app-inforoom-public',
   templateUrl: './inforoom-public.component.html',
@@ -16,6 +17,7 @@ export class InforoomPublicComponent implements OnInit {
 
   constructor(private modal:ModalController,
     private navparams: NavParams,
+    public alertController: AlertController,
     private ChatService:ChatsService,) { }
 
   ngOnInit() {
@@ -28,11 +30,25 @@ export class InforoomPublicComponent implements OnInit {
   closeChat(){
     this.modal.dismiss();
   }
-  update(){
+  async update(){
+    const alert = await this.alertController.create({
+      message:'la sala fue modificada',
+      buttons:['listo']
+    });
     this.ChatService.updateRoomPublic(this.id,this.name,this.description,this.img);
-    console.log("listo");
+    await alert.present();
+    let result = await alert.onDidDismiss();
+    this.closeChat();
+    //console.log("listo");
   }
-  delete(){
+  async delete(){
+    const alert = await this.alertController.create({
+      message:'la sala fue eliminada',
+      buttons:['listo']
+    });
+    await alert.present();
+    let result = await alert.onDidDismiss();
+    this.closeChat();
     this.ChatService.deleteRoomPublic(this.id);
   } 
 

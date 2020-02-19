@@ -1,0 +1,21 @@
+.item {
+  background-color: rgba(119, 119, 119, 0.8);
+  width: 80%;
+  display: block;
+  margin: 0 auto;
+  border-radius: 5px;
+}
+
+
+
+.register{
+    --background: url("../../../assets/bg3.jpg") no-repeat center;
+    --background-size: cover;
+    .icon {
+      width: 86px;
+      display: block;
+      margin: 0 auto;
+      margin-top: 4em;
+      padding-bottom: 2em;
+    }
+  }

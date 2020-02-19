@@ -45,7 +45,7 @@ export class PrivatechatComponent implements OnInit {
     });
     this.chatService.getprivateChatRoom( this.chat.id).subscribe(room =>{
       this.room = room;
-      console.log(this.room)
+      //console.log(this.room)
     })  
     this.chat = this.navparams.get('chat')
   }
@@ -58,7 +58,7 @@ export class PrivatechatComponent implements OnInit {
       this.permition = true
       this.showdiv = false
     }else{
-      throw console.error("contraseña incorrecta");
+      //throw console.error("contraseña incorrecta");
       
     }
   }

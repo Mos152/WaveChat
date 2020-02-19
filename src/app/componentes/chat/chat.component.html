@@ -1,8 +1,8 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-button slot="end" fill="clear" (click)="informationRoom()">
+    <!--ion-button slot="end" fill="clear" (click)="informationRoom()">
       <ion-icon style="color:#fff" name="information"></ion-icon>
-    </ion-button>
+    </ion-button-->
     <ion-button slot="start" fill="clear" (click)="closeChat()">
       <ion-icon style="color:#fff; font-size: 25px" name="arrow-round-back"></ion-icon>
     </ion-button> 
@@ -16,7 +16,8 @@
     <ion-card *ngFor="let mensaje of room.messages" 
     color="secondary">
      <ion-card-content>
-        {{mensaje.content}} - {{mensaje.userName}}
+       <b>{{mensaje .userName}} :</b>
+        {{mensaje.content}} 
       </ion-card-content>
     </ion-card>
   </div>
@@ -25,9 +26,13 @@
 
 <ion-footer>
   <ion-item>
-    <ion-textarea [(ngModel)]="msg"></ion-textarea > 
+    <ion-textarea [(ngModel)]="msg" placeholder="ingresa el mensaje enfermo" ></ion-textarea >
+    <!--ion-input [(ngModel)]="msg" style="border: solid 1px ;" ></ion-input--> 
     <ion-button color="success" (click)="sendMessage()"> 
       <ion-icon name="send"></ion-icon>
     </ion-button>
   </ion-item>
 </ion-footer>
+
+
+

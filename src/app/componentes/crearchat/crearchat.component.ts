@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 import { ChatsService } from '../../servicios/chats.service';
 import { HomePageModule } from '../../home/home.module';
 import { Router} from '@angular/router';
@@ -20,6 +21,7 @@ export class CrearchatComponent implements OnInit {
 
   constructor(
     private ChatService: ChatsService,
+    private alertCtrl: AlertController,
     private modal:ModalController,
    // private home:HomePage,
     private Router:Router
@@ -34,6 +36,7 @@ export class CrearchatComponent implements OnInit {
      });
   }
 
+  
   onCreate(){
     
 

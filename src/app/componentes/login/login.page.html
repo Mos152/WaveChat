@@ -4,18 +4,24 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding color="secondary">
-  <ion-item color="secondary">
+<ion-content class="login">
+
+  <img class="icon" src="assets/icon/wave2.png" >
+
+  <ion-item style="opacity: 70%;"  >
     <ion-label position="floating">Email</ion-label>
-    <ion-input type="text" [(ngModel)]="email" name="email"></ion-input>
+    <ion-input type="text" shape="round" [(ngModel)]="email" class="email-input"name="email"></ion-input>
   </ion-item>
-  <ion-item color="secondary">
-    <ion-label position="floating">contraseña</ion-label>
-    <ion-input type="password" [(ngModel)]="password" name="password"></ion-input>
-  </ion-item>
-  <ion-button (click)="onSubmitLogin()" expand="block">entrar</ion-button>
   <br>
-  <p text-center routerLink="/registro">Crear cuenta</p>
-  
+  <ion-item class="item" style="opacity: 70%;">
+    <ion-label position="floating">contraseña</ion-label>
+    <ion-input type="password"  [(ngModel)]="password" name="password"></ion-input>
+  </ion-item>
+  <br>
+  <div text-center>
+    <ion-button (click)="onSubmitLogin()" shape="round" >entrar</ion-button>
+  </div>
+    <br>
+  <p text-center routerLink="/registro" style="color:white" >Crear cuenta</p>
 
 </ion-content>

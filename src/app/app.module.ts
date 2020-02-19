@@ -1,3 +1,4 @@
+import { MbscModule } from '@mobiscroll/angular';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -26,7 +27,8 @@ import { FiltroPipe } from './pipe/filtro.pipe';
     FormsModule,
     ReactiveFormsModule  
   ],
-  imports: [FormsModule,
+  imports: [ 
+    MbscModule, FormsModule,
     ReactiveFormsModule,
     BrowserModule, 
     IonicModule.forRoot(), 
